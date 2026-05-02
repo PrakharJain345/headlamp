@@ -65,7 +65,6 @@ function ShortcutEditor({
 
   useEffect(() => {
     if (isEditing) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setRecordedKey('');
       setIsRecording(true);
     } else {

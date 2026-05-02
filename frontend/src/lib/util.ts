@@ -564,8 +564,7 @@ export function useId(prefix = '') {
   const [id] = React.useState<string | undefined>(
     import.meta.env.UNDER_TEST === 'true'
       ? prefix + 'id'
-      : // eslint-disable-next-line react-hooks/purity
-        prefix + Math.random().toString(16).slice(2)
+      : prefix + Math.random().toString(16).slice(2)
   );
 
   return id;

@@ -188,16 +188,6 @@
     "rules": {
       "react-hooks/rules-of-hooks": "off",
       "react-hooks/exhaustive-deps": "off",
-      "react-hooks/component-hook-factories": "off",
-      "react-hooks/globals": "off",
-      "react-hooks/immutability": "off",
-      "react-hooks/purity": "off",
-      "react-hooks/refs": "off",
-      "react-hooks/set-state-in-effect": "off",
-      "react-hooks/set-state-in-render": "off",
-      "react-hooks/static-components": "off",
-      "react-hooks/unsupported-syntax": "off",
-      "react-hooks/use-memo": "off",
       "license-header/header": [
         "error",
         [

@@ -171,7 +171,6 @@ export function Dialog(props: DialogProps) {
       {...other}
     >
       {(!!title || withFullScreen) && (
-        // eslint-disable-next-line react-hooks/static-components
         <DialogTitle {...titleProps} id={titleId} buttons={[<FullScreenButton />, <CloseButton />]}>
           {title}
         </DialogTitle>

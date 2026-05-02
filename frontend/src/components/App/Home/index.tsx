@@ -102,9 +102,11 @@ function HomeComponent(props: HomeComponentProps) {
   );
   const { t } = useTranslation(['translation', 'glossary']);
   const [versions, errors] = useClustersVersion(Object.values(clusters || {}));
-  const warningLabels = useWarningSettingsPerCluster(
-    Object.values(customNameClusters).map(c => c.name)
+  const clusterNames = React.useMemo(
+    () => Object.values(customNameClusters).map(c => c.name),
+    [customNameClusters]
   );
+  const warningLabels = useWarningSettingsPerCluster(clusterNames);
 
   React.useEffect(() => {
     if (isBackstage()) {

@@ -140,7 +140,6 @@ export default function AppContainer() {
           },
         }}
       />
-      {/* eslint-disable-next-line react-hooks/static-components */}
       <Router>
         <PreviousRouteProvider>
           <MonacoEditorLoaderInitializer>

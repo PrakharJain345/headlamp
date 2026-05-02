@@ -93,7 +93,6 @@ export function ClusterTitle(props: ClusterTitleProps) {
         isValidElement(ChooserButton) ? (
           ChooserButton
         ) : (
-          // eslint-disable-next-line react-hooks/static-components
           <ChooserButton
             clickHandler={e => {
               onClick && onClick(e);

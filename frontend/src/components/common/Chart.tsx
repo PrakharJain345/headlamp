@@ -261,7 +261,6 @@ interface PaperTooltipProps {
 function PaperTooltip({ rechartsProps, tooltipFunc, data, containerRef }: PaperTooltipProps) {
   if (!rechartsProps || !rechartsProps.active || !rechartsProps.coordinate) return null;
 
-  // eslint-disable-next-line react-hooks/refs
   const rect = containerRef.current?.getBoundingClientRect();
 
   const { x, y } = rechartsProps.coordinate;

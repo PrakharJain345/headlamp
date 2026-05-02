@@ -117,7 +117,6 @@ function PureLink(
   } = props as LinkObjectProps;
 
   if (activeCluster) {
-    // eslint-disable-next-line react-hooks/immutability
     params.cluster = formatClusterPathParam(getSelectedClusters(), activeCluster);
   }
 

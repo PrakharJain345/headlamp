@@ -262,7 +262,6 @@ function sortingFn(sortFn?: (a: any, b: any) => number): MRT_SortingFn<any> | un
  */
 export function useThrottle(value: any, interval = 1000): any {
   const [throttledValue, setThrottledValue] = useState(value);
-  // eslint-disable-next-line react-hooks/purity
   const lastEffected = useRef(Date.now() + interval);
 
   // Ensure we don't throttle holding the loading null or undefined value before
