@@ -262,7 +262,7 @@ function sortingFn(sortFn?: (a: any, b: any) => number): MRT_SortingFn<any> | un
  */
 export function useThrottle(value: any, interval = 1000): any {
   const [throttledValue, setThrottledValue] = useState(value);
-  const lastEffected = useRef(Date.now() + interval);
+  const lastEffected = useRef<number | null>(null);
 
   // Ensure we don't throttle holding the loading null or undefined value before
   // real data comes in. Otherwise we could wait up to interval milliseconds
@@ -275,7 +275,11 @@ export function useThrottle(value: any, interval = 1000): any {
   useEffect(() => {
     const now = Date.now();
 
-    if (now >= lastEffected.current + interval || numEffected.current < 2) {
+    if (lastEffected.current === null) {
+      lastEffected.current = now + interval;
+    }
+
+    if (now >= (lastEffected.current || 0) + interval || numEffected.current < 2) {
       numEffected.current = numEffected.current + 1;
       lastEffected.current = now;
       setThrottledValue(value);

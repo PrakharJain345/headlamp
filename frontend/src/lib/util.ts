@@ -561,7 +561,7 @@ export function normalizeUnit(resourceType: string, quantity: string) {
  * If UNDER_TEST is set to true, it will return the same ID every time, so snapshots do not get invalidated.
  */
 export function useId(prefix = '') {
-  const [id] = React.useState<string | undefined>(
+  const [id] = React.useState<string | undefined>(() =>
     import.meta.env.UNDER_TEST === 'true'
       ? prefix + 'id'
       : prefix + Math.random().toString(16).slice(2)
