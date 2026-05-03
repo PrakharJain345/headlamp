@@ -29,7 +29,6 @@ export const useTypeDefinition = (items: any[], maxKeysPerObject: number) => {
 
   useEffect(() => {
     const typeDef = generateGlobalVarDeclarations(items, maxKeysPerObject);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTypeDefinition(typeDef);
   }, [items, maxKeysPerObject]);
 

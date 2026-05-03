@@ -65,7 +65,6 @@ export default function RollbackDialog(props: RollbackDialogProps) {
     }
 
     let isActive = true;
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true);
     setError(null);
     setSelectedRevision(undefined);

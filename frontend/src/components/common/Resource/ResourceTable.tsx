@@ -262,29 +262,23 @@ function sortingFn(sortFn?: (a: any, b: any) => number): MRT_SortingFn<any> | un
  */
 export function useThrottle(value: any, interval = 1000): any {
   const [throttledValue, setThrottledValue] = useState(value);
-  // eslint-disable-next-line react-hooks/purity
-  const lastEffected = useRef(Date.now() + interval);
-
-  // Ensure we don't throttle holding the loading null or undefined value before
-  // real data comes in. Otherwise we could wait up to interval milliseconds
-  // before we update the throttled value.
-  //
-  //   numEffected == 0,  null, or undefined whilst loading.
-  //   numEffected == 1,  real data.
+  const lastEffected = useRef(0);
   const numEffected = useRef(0);
 
   useEffect(() => {
     const now = Date.now();
+    const timeSinceLastUpdate = now - lastEffected.current;
 
-    if (now >= lastEffected.current + interval || numEffected.current < 2) {
+    if (timeSinceLastUpdate >= interval || numEffected.current < 2) {
       numEffected.current = numEffected.current + 1;
       lastEffected.current = now;
       setThrottledValue(value);
     } else {
+      const remainingTime = interval - timeSinceLastUpdate;
       const id = window.setTimeout(() => {
-        lastEffected.current = now;
+        lastEffected.current = Date.now();
         setThrottledValue(value);
-      }, interval);
+      }, remainingTime);
 
       return () => window.clearTimeout(id);
     }

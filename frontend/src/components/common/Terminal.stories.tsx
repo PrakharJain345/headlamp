@@ -422,7 +422,6 @@ export const TerminalShellNotFoundTryNext: StoryFn<React.ComponentProps<typeof T
       void opts;
       await Promise.resolve();
       if (callCount === 0) {
-        // eslint-disable-next-line react-hooks/immutability
         callCount += 1;
         timeouts.push(
           setTimeout(

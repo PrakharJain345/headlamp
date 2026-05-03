@@ -1355,32 +1355,25 @@ export function LivenessProbes(props: { liveness: KubeContainer['livenessProbe']
 
   return (
     <Box display="flex" flexDirection="column">
-      {/* eslint-disable-next-line react-hooks/static-components */}
       <LivenessProbeItem>
         {`http-get, path: ${liveness?.httpGet?.path}, port: ${liveness?.httpGet?.port},
     scheme: ${liveness?.httpGet?.scheme}`}
       </LivenessProbeItem>
-      {/* eslint-disable-next-line react-hooks/static-components */}
       <LivenessProbeItem>
         {liveness?.exec?.command && `exec[${liveness?.exec?.command.join(' ')}]`}
       </LivenessProbeItem>
-      {/* eslint-disable-next-line react-hooks/static-components */}
       <LivenessProbeItem>
         {liveness?.successThreshold && `success = ${liveness?.successThreshold}`}
       </LivenessProbeItem>
-      {/* eslint-disable-next-line react-hooks/static-components */}
       <LivenessProbeItem>
         {liveness?.failureThreshold && `failure = ${liveness?.failureThreshold}`}
       </LivenessProbeItem>
-      {/* eslint-disable-next-line react-hooks/static-components */}
       <LivenessProbeItem>
         {liveness?.initialDelaySeconds && `delay = ${liveness?.initialDelaySeconds}s`}
       </LivenessProbeItem>
-      {/* eslint-disable-next-line react-hooks/static-components */}
       <LivenessProbeItem>
         {liveness?.timeoutSeconds && `timeout = ${liveness?.timeoutSeconds}s`}
       </LivenessProbeItem>
-      {/* eslint-disable-next-line react-hooks/static-components */}
       <LivenessProbeItem>
         {liveness?.periodSeconds && `period = ${liveness?.periodSeconds}s`}
       </LivenessProbeItem>
@@ -1800,7 +1793,6 @@ export function ContainersSection(props: { resource: KubeObjectInterface | null 
 
     if (resource.spec) {
       if (resource.spec.containers) {
-        // eslint-disable-next-line react-hooks/immutability
         title = t('Containers');
         containers = resource.spec.containers;
       } else if (resource.spec.template && resource.spec.template.spec) {

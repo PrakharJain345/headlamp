@@ -397,7 +397,6 @@ function ProjectDetailsContent({ project }: { project: ProjectDefinition }) {
           console.error(`Failed to check if custom delete button is ready`, e);
         });
     } else {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setDeleteButton(() => customDeleteButton.component);
     }
 
