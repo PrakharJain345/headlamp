@@ -23,6 +23,7 @@ export default defineConfig({
     define: {
       global: 'globalThis',
       'import.meta.env.BASE_URL': JSON.stringify(process.env.BASE_URL || './'), // Define BASE_URL with a default value
+      'import.meta.env.UNDER_TEST': JSON.stringify(process.env.UNDER_TEST || 'false'), // Define UNDER_TEST
       ...reactAppEnvVars, // Inject REACT_APP_ environment variables
     },
   },

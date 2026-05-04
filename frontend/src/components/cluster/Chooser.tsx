@@ -314,6 +314,7 @@ export function ClusterDialog(props: ClusterDialogProps) {
       {...otherProps}
     >
       <DialogTitle
+        disableTypography
         sx={{
           textAlign: 'center',
           alignItems: 'center',
