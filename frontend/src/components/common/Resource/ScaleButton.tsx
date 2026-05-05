@@ -65,7 +65,6 @@ export default function ScaleButton(props: ScaleButtonProps) {
     }
   }
 
-  // eslint-disable-next-line react-hooks/use-memo
   const applyFunc = React.useCallback(updateFunc, [item]);
 
   function handleSave(numReplicas: number) {

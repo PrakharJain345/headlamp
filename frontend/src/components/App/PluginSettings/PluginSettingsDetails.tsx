@@ -162,7 +162,6 @@ export function PluginSettingsDetailsPure(props: PluginSettingsDetailsPureProps)
 
   useEffect(() => {
     if (!_.isEqual(config, data)) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setEnableSaveButton(true);
     } else {
       setEnableSaveButton(false);

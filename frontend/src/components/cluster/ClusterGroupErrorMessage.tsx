@@ -47,13 +47,13 @@ function ErrorMessage({ error }: { error: ApiError }) {
 
   const defaultTitle = t('Failed to load resources');
   const forbiddenTitle = t("You don't have permissions to view this resource");
-  const notFoundTitile = t('Resource not found');
+  const notFoundTitle = t('Resource not found');
 
   const isForbidden = error.status === 403;
 
   let title = defaultTitle;
   if (error.status === 404) {
-    title = notFoundTitile;
+    title = notFoundTitle;
   } else if (isForbidden) {
     title = forbiddenTitle;
   }
@@ -85,7 +85,9 @@ function ErrorMessage({ error }: { error: ApiError }) {
       </AlertTitle>
       {showMessage && (
         <>
-          {showClusterName ? <Box>Cluster: {error.cluster}</Box> : null}
+          {showClusterName ? (
+            <Box>{t('translation|Cluster: {{ name }}', { name: error.cluster })}</Box>
+          ) : null}
           {error.message}
         </>
       )}

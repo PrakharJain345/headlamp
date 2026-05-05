@@ -202,7 +202,6 @@ export function ClusterNameEditor({
     <NameValueTable
       rows={[
         {
-          // eslint-disable-next-line react-hooks/static-components
           name: <ClusterName />,
           nameID: clusterNameLabelID,
           value: (

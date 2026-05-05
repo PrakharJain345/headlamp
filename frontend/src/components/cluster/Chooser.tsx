@@ -93,7 +93,6 @@ export function ClusterTitle(props: ClusterTitleProps) {
         isValidElement(ChooserButton) ? (
           ChooserButton
         ) : (
-          // eslint-disable-next-line react-hooks/static-components
           <ChooserButton
             clickHandler={e => {
               onClick && onClick(e);
@@ -122,18 +121,17 @@ export function ClusterTitle(props: ClusterTitleProps) {
 interface ClusterButtonProps extends PropsWithChildren<{}> {
   cluster: Cluster;
   onClick?: (...args: any[]) => void;
-  focusedRef?: (node: any) => void;
 }
 
-function ClusterButton(props: ClusterButtonProps) {
+const ClusterButton = React.forwardRef((props: ClusterButtonProps, ref: React.Ref<any>) => {
   const theme = useTheme();
-  const { cluster, onClick = undefined, focusedRef } = props;
+  const { cluster, onClick = undefined } = props;
   const appearance = getClusterAppearanceFromMeta(cluster?.name || '');
   const icon = appearance.icon || 'mdi:kubernetes';
   const iconColor = appearance.accentColor || theme.palette.primaryColor;
 
   return (
-    <ButtonBase focusRipple ref={focusedRef} onClick={onClick}>
+    <ButtonBase focusRipple ref={ref} onClick={onClick}>
       <Card
         sx={{
           width: 128,
@@ -165,7 +163,7 @@ function ClusterButton(props: ClusterButtonProps) {
       </Card>
     </ButtonBase>
   );
-}
+});
 
 interface ClusterListProps {
   clusters: Cluster[];
@@ -225,7 +223,7 @@ function ClusterList(props: ClusterListProps) {
           </Grid>
         )}
         <Grid
-          aria-labelledby={`#${recentClustersLabelId}`}
+          aria-labelledby={recentClustersLabelId}
           item
           container
           alignItems="center"
@@ -235,7 +233,7 @@ function ClusterList(props: ClusterListProps) {
           {recentClusters.map((cluster, i) => (
             <Grid item key={cluster.name}>
               <ClusterButton
-                focusedRef={i === 0 ? focusedRef : undefined}
+                ref={i === 0 ? focusedRef : undefined}
                 cluster={cluster}
                 onClick={() => onButtonClick(cluster)}
               />
@@ -315,6 +313,7 @@ export function ClusterDialog(props: ClusterDialogProps) {
       {...otherProps}
     >
       <DialogTitle
+        disableTypography
         sx={{
           textAlign: 'center',
           alignItems: 'center',

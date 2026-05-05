@@ -45,7 +45,7 @@ export const WithClusterErrors: Story = {
   },
 };
 
-export const WithMutipleErrorsPerCluster: Story = {
+export const WithMultipleErrorsPerCluster: Story = {
   args: {
     errors: [
       new ApiError('Error A in cluster 1', { cluster: 'cluster1' }),

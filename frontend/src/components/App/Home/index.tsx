@@ -86,8 +86,7 @@ function useWarningSettingsPerCluster(clusterNames: string[]) {
       }
       return currentWarningLabels;
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [warningsMap]);
+  }, [warningsMap, clusterNames]);
 
   return warningLabels;
 }
@@ -103,9 +102,11 @@ function HomeComponent(props: HomeComponentProps) {
   );
   const { t } = useTranslation(['translation', 'glossary']);
   const [versions, errors] = useClustersVersion(Object.values(clusters || {}));
-  const warningLabels = useWarningSettingsPerCluster(
-    Object.values(customNameClusters).map(c => c.name)
+  const clusterNames = React.useMemo(
+    () => Object.values(customNameClusters).map(c => c.name),
+    [customNameClusters]
   );
+  const warningLabels = useWarningSettingsPerCluster(clusterNames);
 
   React.useEffect(() => {
     if (isBackstage()) {
@@ -121,8 +122,7 @@ function HomeComponent(props: HomeComponentProps) {
       }
       return getCustomClusterNames(clusters);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [customNameClusters]);
+  }, [clusters]);
 
   const memoizedComponent = React.useMemo(
     () => (
@@ -139,8 +139,7 @@ function HomeComponent(props: HomeComponentProps) {
         />
       </>
     ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [customNameClusters, errors, versions, warningLabels]
+    [customNameClusters, errors, versions, warningLabels, clusters]
   );
 
   return (
